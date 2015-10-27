@@ -105,56 +105,7 @@ class Employee
     }
 }
 ```
-
-Facadeパターンでなおす場合(間違ってたらいってくださいｗ)
-```
-<?php
-class Employee
-{
-    public function calculatePay()
-    {
-         //something
-    }
-}
-
-class OchinginRegisterFacade
-{
-    public function storeSalarary($employee)
-    {
-        PersistenceSubsystem::save($employee->calculatePay());
-    }
-}
-```
-
-* Proxyパターンでなおす場合(間違ってたらいってくださいｗ)
-```
-<?php
-
-class Repository
-{
-    public function storeSalary($calculatePay)
-    {
-        PersistenceSubsystem::save($calculatePay);
-    }
-}
-
-class Employee
-{
-    public function __construct($repository)
-    {
-        $this->_proxy = $repository;
-    }
-    public function calculatePay()
-    {
-        //something
-    }
-    public function saveSalary()
-    {
-        $this->_proxy->storeSalarary($this->calculatePay());
-    }
-}
-```
-
+上記をFacadeとProxyパターンで修正してみる
 
 ## 8.2 結論
 最もシンプルだが、正しく適用するのが最も難しい。
